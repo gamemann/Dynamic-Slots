@@ -41,8 +41,10 @@ public void OnPluginStart()
 
 public void OnClientPutInServer(int client) 
 {
+	// Check if we need to alter visible maxplayers.
 	int diff = PlayerDiff();
 
+	// If difference isn't 0, adjust (it will be a negative value to decrease and positive to increase obviously).
 	if (diff != 0)
 	{
 		if (g_cvDebug.BoolValue)
@@ -56,8 +58,10 @@ public void OnClientPutInServer(int client)
 
 public void OnClientDisconnect(int client) 
 {
+	// Check if we need to alter visible maxplayers.
 	int diff = PlayerDiff();
 
+	// If difference isn't 0, adjust (it will be a negative value to decrease and positive to increase obviously).
 	if (diff != 0)
 	{
 		if (g_cvDebug.BoolValue)
@@ -71,8 +75,10 @@ public void OnClientDisconnect(int client)
 
 stock int PlayerDiff()
 {
+	// Get custom client count.
 	int cl_cnt = GetClientCountCustom();
 
+	// For code visibility, let's assign short-named variables along with making sure we have the correct max slots variable.
 	int min = g_cvMinSlots.IntValue;
 	int max = (g_cvMaxSlots.IntValue > 0) ? g_cvMaxSlots.IntValue : MaxClients;
 	int slot_cnt = g_cvVisibleMaxplayers.IntValue;
@@ -88,6 +94,7 @@ stock int PlayerDiff()
 	{
 		return 0;
 	}
+
 	int remainder = cl_cnt - min;
 
 	int multiplier = (remainder / g_cvIncreaseSlots.IntValue) + 1;
