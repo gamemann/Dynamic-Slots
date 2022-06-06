@@ -31,7 +31,7 @@ public void OnPluginStart()
 	g_cvVisibleMaxplayers = FindConVar("sv_visiblemaxplayers");
 
 	// If 'sv_visiblemaxplayers' isn't available, the plugin will not work.
-	if (g_cvVisibleMaxplayers == INVALID_HANDLE)
+	if (g_cvVisibleMaxplayers == null)
 	{
 		SetFailState("%s Failed to find sv_visiblemaxplayers.", TAG);
 	}
